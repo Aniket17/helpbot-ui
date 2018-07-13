@@ -15,27 +15,22 @@
           </div>
         </div>
         <div class="panel-body msg_container_base" [hidden]="!isOpen">
-
-            <div ngx-auto-scroll lock-y-offset="10" observe-attributes>
-                <div class="row msg_container base_{{message.type}}" *ngFor="let message of messages">
-                    <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'sent'">
-                      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                    </div>
-                    <div class="col-md-10 col-xs-10">
-                      <div class="messages msg_{{message.type}}">
-                        <strong *ngIf="message.type == 'sent'">Me:</strong>
-                        <strong *ngIf="message.type == 'recieve'">Helpbot:</strong>
-                        <p [innerHTML]="message.text"></p>
-                        <time datetime="2009-11-13T20:00">{{message.dateSent}}</time>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'recieve'">
-                      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-5.jpg" class=" img-responsive ">
-                    </div>
+            <div class="row msg_container base_{{message.type}}" *ngFor="let message of messages">
+                <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'sent'">
+                  <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                </div>
+                <div class="col-md-10 col-xs-10">
+                  <div class="messages msg_{{message.type}}">
+                    <strong *ngIf="message.type == 'sent'">Me:</strong>
+                    <strong *ngIf="message.type == 'recieve'">Helpbot:</strong>
+                    <p [innerHTML]="message.text"></p>
+                    <time datetime="2009-11-13T20:00">{{message.dateSent}}</time>
                   </div>
-            </div>
-          
-
+                </div>
+                <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'recieve'">
+                  <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-5.jpg" class=" img-responsive ">
+                </div>
+              </div>
         </div>
         <div class="panel-footer">
           <div class="input-group">
