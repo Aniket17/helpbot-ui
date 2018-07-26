@@ -2,35 +2,41 @@
   <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;">
     <div class="col-xs-12 col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading top-bar">
+        <div class="panel-heading top-bar" style="background-color: #3276b1;">
           <div class="col-md-8 col-xs-8">
             <h3 class="panel-title">
-              <span class="glyphicon glyphicon-comment"></span> Chat - Helpbot</h3>
+              <span class="glyphicon glyphicon-comment" style="margin-right: 10px "></span> <strong>NICE Helpbot</strong></h3>
           </div>
           <div class="col-md-4 col-xs-4" style="text-align: right;">
             <a href="#" (click)="toggleChat()">
               <span id="minim_chat_window" [ngClass]="{'glyphicon-minus':isOpen, 'glyphicon-plus':!isOpen}" class="glyphicon icon_minim"></span>
             </a>
             <!-- <a href="#"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1"></span></a> -->
-          </div>
+          </div> 
         </div>
-        <div class="panel-body msg_container_base" [hidden]="!isOpen">
-            <div class="row msg_container base_{{message.type}}" *ngFor="let message of messages">
-                <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'sent'">
-                  <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                </div>
-                <div class="col-md-10 col-xs-10">
-                  <div class="messages msg_{{message.type}}">
-                    <strong *ngIf="message.type == 'sent'">Me:</strong>
-                    <strong *ngIf="message.type == 'recieve'">Helpbot:</strong>
-                    <p [innerHTML]="message.text"></p>
-                    <time datetime="2009-11-13T20:00">{{message.dateSent}}</time>
-                  </div>
-                </div>
-                <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'recieve'">
-                  <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-5.jpg" class=" img-responsive ">
-                </div>
+        <div class="panel-body msg_container_base" #scrollMe [hidden]="!isOpen">
+          <div class="row msg_container base_{{message.type}}" *ngFor="let message of messages">
+            <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'recieve'">
+              <img src="../assets/bot.jpg" class=" img-responsive ">
+            </div>
+            <div class="col-md-10 col-xs-10">
+              <div class="messages msg_{{message.type}}">
+                <strong *ngIf="message.type == 'sent'">Me:</strong>
+                <strong *ngIf="message.type == 'recieve'">Helpbot:</strong>
+                <p [innerHTML]="message.text"></p>
+                <time datetime="2009-11-13T20:00">{{message.dateSent}}</time>
               </div>
+            </div>
+            <div class="col-md-2 col-xs-2 avatar" *ngIf="message.type == 'sent'">
+              <img src="../assets/user.jpg" class=" img-responsive ">
+            </div>
+          </div>
+          <div class="spinner" [hidden] = "!isLoading">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
         <div class="panel-footer">
           <div class="input-group">

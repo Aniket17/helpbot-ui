@@ -25,7 +25,7 @@ body{
     padding:0
 }
 .msg_container_base{
-  background: #e5e5e5;
+  background: #e9f5fd;
   margin: 0;
   padding: 0 10px 10px;
   height:500px;
@@ -34,7 +34,7 @@ body{
 .top-bar {
   background: #666;
   color: white;
-  padding: 10px;
+  padding: 10px 0px;
   position: relative;
   overflow: hidden;
 }
@@ -72,6 +72,8 @@ img {
 }
 .avatar {
     position: relative;
+    border: 1px solid gray;
+    background: #02c0fe;
 }
 .base_receive > .avatar:after {
     content: "";
@@ -131,3 +133,28 @@ img {
     left:0px;
     bottom:0;
 }
+
+.spinner div {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: 60px;
+    background-color: #3276b1;
+    border-radius: 50%;
+    animation: move 4s infinite cubic-bezier(.2,.64,.81,.23);
+  }
+  .spinner div:nth-child(2) {
+    animation-delay: 150ms;
+  }
+  .spinner div:nth-child(3) {
+    animation-delay: 300ms;
+  }
+  .spinner div:nth-child(4) {
+    animation-delay: 450ms;
+  }
+  @keyframes move {
+    0% {left: 0%;}
+    75% {left:100%;}
+    100% {left:100%;}
+  }

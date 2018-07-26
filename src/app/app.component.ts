@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,12 +7,26 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  ngOnInit() {
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
   title = 'Helpbot';
   isOpen = true;
   message = "";
   messages = [
     {
-      text: "Hi! I am Mr.Helpbot!",
+      text: "You are connected to helpbot!",
       dateSent: (new Date()).toDateString(),
       type: "recieve"
     }];
@@ -47,13 +61,19 @@ export class AppComponent {
       });
   }
   public processMessage = (msg, type, isJson) => {
+    let date = new Date();
+    let dd = date.getDay();
+    let mm = date.getMonth();
+    let hour = date.getHours();
+    let mins = date.getMinutes();
+
     let obj = {
       text: isJson ? "<ol>" + JSON.parse(msg) + "</ol>" : msg,
       type: type,
-      dateSent: (new Date()).toDateString()
+      dateSent: dd+"/"+mm+" - "+ hour+":"+mins
     }
     this.messages.push(obj);
-    setTimeout(()=>$('.msg_container_base')[0].scrollTop = $('.msg_container_base')[0].scrollHeight,200)
+    //this.document.getElementsByClassName('.msg_container_base')[0].scrollTop = this.document.getElementsByClassName('.msg_container_base')[0].scrollHeight
   }
   public keyDownFunction = (event) => {
     if (event.keyCode == 13) {
